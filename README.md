@@ -65,3 +65,31 @@ resource "aws_security_group" "packer" {
 
 Terraform
 =========
+
+## Folder structure
+
+The Terraform code is divided into 2 folders: Environments and modules
+
+### Environments
+- 2 environments: test and prod
+- Different states for both the network setup (less likely to change) and the app setup
+
+### Modules 
+- 2 modules: `vpc-public-private` and `apache_app`
+- The network module consists of: 1 VPC, 3 Public Subnets, 3 Private Subnets, 3 NAT Gateways and a Bastion Server
+- The app module will use the network module outputs to create a small APP with an ELB in the public networks and an autoscaling group of Apache servers in the private networks
+
+### How to run setups
+
+In each of the network environment folders: 
+
+- Modify variables.tf as needed
+- terraform init to initialize the s3 remote state and dynamodb lock
+- terraform plan to validate what is going to happen
+- terraform apply
+
+Beware that the nats, ec2 instances and ebs volumens and network traffic are not for free so if you want to tear it down just run:
+
+- terraform destroy
+
+
