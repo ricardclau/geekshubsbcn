@@ -2,7 +2,11 @@
     "variables": {
         "iso_url": "http://releases.ubuntu.com/xenial/ubuntu-16.04.2-server-amd64.iso",
         "iso_checksum": "2bce60d18248df9980612619ff0b34e6",
-        "iso_checksum_type": "md5"
+        "iso_checksum_type": "md5",
+        "build_memory": "2048",
+        "memory": "1024",
+        "build_cpu_cores": "2",
+        "cpu_cores": "1"
     },
     "builders": [
         {
@@ -38,7 +42,35 @@
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
-            "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'"
+            "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
+            "vboxmanage": [
+                [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--memory",
+                  "{{user `build_memory`}}"
+                ],
+                [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--cpus",
+                  "{{user `build_cpu_cores`}}"
+                ]
+            ],
+            "vboxmanage_post": [
+                [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--memory",
+                  "{{user `memory`}}"
+                ],
+                [
+                  "modifyvm",
+                  "{{.Name}}",
+                  "--cpus",
+                  "{{user `cpu_cores`}}"
+                ]
+            ]
         }
     ],
     "provisioners": [

@@ -9,17 +9,19 @@ Packer
 
 The packer code is structured as follows:
 
-- **bootstrap**: This folder contains bootstrap scripts for AWS and VMWare.
+- **bootstrap**: This folder contains bootstrap scripts for AWS and Virtualbox.
 - **provisioners**: This folder contains provisioning Powershell scripts, Ansible playbooks, etc.
 
 ## How to use the templates
 
 - Download Packer following the instructions at https://www.packer.io/
 
-### VMWare
+### VirtualBox
 
 - Install Virtualbox in your computer
 - Run `packer build virtualbox-ubuntu16.json` or `packer build virtualbox-win2012.json`
+
+If you are testing Windows 2012, start with the no-updates version of Autounattend.xml and when you are comfortable with the workflow and want to actually build a fully patched version, swap the autounattend variable to the one including Windows updates. The whole process will take about 2.5h!
 
 ### AWS AMIs
 

@@ -25,7 +25,7 @@
             "guest_os_type": "Windows2012_64",
             "guest_additions_mode": "disable",
             "output_directory": "packer-win2012-{{timestamp}}",
-            "disk_size": 20480,
+            "disk_size": 40960,
             "floppy_files": [
                 "{{user `autounattend`}}",
                 "{{template_dir}}/provisioners/powershell/win-updates.ps1",
