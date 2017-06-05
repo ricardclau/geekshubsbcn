@@ -1,0 +1,8 @@
+# Packer cache and output results
+packer/packer_cache
+packer/packer-*
+# Ansible failures
+*.retry
+# Terraform local state + modules
+**/.terraform
+**/terraform.tfstate*
