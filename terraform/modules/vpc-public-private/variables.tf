@@ -1,15 +1,27 @@
 variable "azs" {
-  default = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  type = "list"
 }
 
-variable "environment_name" {
-  default = "environment"
+variable "environment_name" {}
+
+variable "project" {}
+
+variable "region" {}
+
+variable "vpc_network" {}
+
+variable "key_name" {}
+
+variable "office_ip_cidrs" {
+  type = "list"
 }
 
-variable "region" {
-  default = "eu-west-1"
+variable "images" {
+  default = {
+    ubuntu16  = "ami-405f7226"
+  }
 }
 
-variable "vpc_network" {
-  default = "10.0.0.0/16"
+variable "bastion_instance_type" {
+	default = "t2.micro"
 }

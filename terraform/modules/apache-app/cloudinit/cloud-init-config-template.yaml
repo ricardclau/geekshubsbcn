@@ -1,0 +1,11 @@
+#cloud-config
+apt_upgrade: true
+apt_update: true
+apt_reboot_if_required: true
+
+timezone: UTC
+
+final_message: "System boot (via cloud-init) is COMPLETE, after $UPTIME seconds."
+
+output:
+  all: '| tee -a /var/log/cloud-init-output.log'

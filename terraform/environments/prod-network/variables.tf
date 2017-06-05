@@ -1,9 +1,9 @@
 variable "environment_name" {
-  default = "test"
+  default = "prod"
 }
 
 variable "vpc_network" {
-  default = "10.161.0.0/16"
+  default = "10.162.0.0/16"
 }
 
 variable "region" {

@@ -5,7 +5,8 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags {
-    Name        = "${var.region}.geekshubs.${var.environment_name}"
+    Name        = "${var.project}-${var.environment_name}"
+    Environment = "${var.environment_name}"
   }
 }
 
@@ -14,12 +15,27 @@ resource "aws_internet_gateway" "main" {
   vpc_id = "${aws_vpc.main.id}"
 
   tags {
-    Name        = "igw.${var.region}.${var.environment_name}"
+    Name        = "igw-${var.project}-${var.environment_name}"
+    Environment = "${var.environment_name}"
+  }
+}
+
+resource "null_resource" "network_layer_cidrs" {
+  triggers = {
+    dmz = "${cidrsubnet(var.vpc_network, 6, 0)}"
+    app = "${cidrsubnet(var.vpc_network, 6, 1)}"
+  }
+}
+
+output "network_layer_cidrs" {
+  value = {
+    dmz = "${null_resource.network_layer_cidrs.triggers.dmz}"
+    app = "${null_resource.network_layer_cidrs.triggers.app}"
   }
 }
 
 # Outputs:
-output "aws_vpc.main" {
+output "aws_vpc" {
   value = {
     id         = "${aws_vpc.main.id}"
     cidr_block = "${aws_vpc.main.cidr_block}"

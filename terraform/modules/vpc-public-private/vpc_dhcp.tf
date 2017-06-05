@@ -4,7 +4,8 @@ resource "aws_vpc_dhcp_options" "main" {
   domain_name_servers = ["AmazonProvidedDNS"]
 
   tags {
-    Name        = "${var.region}.${var.environment_name}"
+    Name        = "dhcp-${var.project}-${var.environment_name}"
+    Environment = "${var.environment_name}"
   }
 }
 
