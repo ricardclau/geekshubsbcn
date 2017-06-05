@@ -32,5 +32,5 @@ output "private_subnets" {
 }
 
 output "bastion_sg" {
-  value = "${module.vpc.bastion_sg}"	
+  value = "${module.vpc.bastion_sg}"
 }

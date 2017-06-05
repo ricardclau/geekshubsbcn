@@ -7,7 +7,7 @@ module "vpc" {
   vpc_network      = "${var.vpc_network}"
   project          = "${var.project}"
   office_ip_cidrs  = "${var.office_ip_cidrs}"
-  key_name         = "${var.key_name}"  
+  key_name         = "${var.key_name}"
 }
 
 # Outputs (will end up on S3 so subsequent layers can refer to them as "shared state"):
@@ -32,5 +32,5 @@ output "private_subnets" {
 }
 
 output "bastion_sg" {
-  value = "${module.vpc.bastion_sg}"	
+  value = "${module.vpc.bastion_sg}"
 }

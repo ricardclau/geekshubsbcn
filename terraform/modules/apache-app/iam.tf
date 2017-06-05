@@ -32,16 +32,16 @@ resource "aws_iam_role_policy" "s3_secrets_read" {
   "Version": "2012-10-17",
   "Statement": [
     {
-		"Action": [
-      "s3:GetObject",
-      "s3:GetObjectVersion",
-      "s3:ListBucket"
-		],
-		"Effect": "Allow",
-		"Resource": [
-			"arn:aws:s3:::app-secrets",
-			"arn:aws:s3:::app-secrets/*"
-		]
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:ListBucket"
+      ],
+    "Effect": "Allow",
+    "Resource": [
+        "arn:aws:s3:::app-secrets",
+        "arn:aws:s3:::app-secrets/*"
+      ]
     }
   ]
 }

@@ -18,10 +18,10 @@ variable "office_ip_cidrs" {
 
 variable "images" {
   default = {
-    ubuntu16  = "ami-405f7226"
+    ubuntu16 = "ami-405f7226"
   }
 }
 
 variable "bastion_instance_type" {
-	default = "t2.micro"
+  default = "t2.micro"
 }

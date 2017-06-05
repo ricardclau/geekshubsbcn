@@ -17,12 +17,12 @@ variable "environment_name" {
 }
 
 variable "instance_type" {
-	default = "t2.micro"
+  default = "t2.micro"
 }
 
 variable "images" {
   default = {
-    ubuntu16  = "ami-405f7226"
+    ubuntu16 = "ami-405f7226"
   }
 }
 
@@ -31,5 +31,5 @@ variable "asg" {
     desired_capacity = 1
     max_size         = 1
     min_size         = 1
-  }	
+  }
 }

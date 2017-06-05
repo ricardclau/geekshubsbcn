@@ -15,9 +15,9 @@ resource "aws_security_group" "app" {
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
     security_groups = ["${data.terraform_remote_state.network.bastion_sg}"]
   }
 
