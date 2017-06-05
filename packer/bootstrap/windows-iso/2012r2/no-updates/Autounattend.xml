@@ -178,22 +178,11 @@
                     <Order>25</Order>
                     <Description>Disable password expiration for vagrant user</Description>
                 </SynchronousCommand>
-
-                <!-- Uncomment this to enable winRM if you don't run Windows updates -->
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c powershell -File A:\configure-winrm.ps1</CommandLine>
                     <Order>35</Order>
                     <Description>Configures WinRM</Description>
                 </SynchronousCommand>
-
-                <!-- Comment this to not run Win updates
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c powershell -File A:\win-updates.ps1</CommandLine>
-                    <Order>35</Order>
-                    <Description>Install Windows Updates</Description>
-                </SynchronousCommand>
-                -->
-
             </FirstLogonCommands>
             <OOBE>
                 <HideEULAPage>true</HideEULAPage>

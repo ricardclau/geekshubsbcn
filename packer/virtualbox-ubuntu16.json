@@ -47,8 +47,8 @@
             "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
             "inline": [
                 "sleep 30",
-                "sudo apt-get -y update",
-                "sudo apt-get -y upgrade",
+                "sudo apt -y update",
+                "sudo apt -y upgrade",
                 "echo '%sudo    ALL=(ALL)  NOPASSWD:ALL' >> /etc/sudoers"
             ]
         },

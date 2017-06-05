@@ -1,0 +1,15 @@
+<powershell>
+# turn off PowerShell execution policy restrictions
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine
+
+Set-Item -Path WSMan:\localhost\MaxTimeoutms -Value 1800000
+Set-Item -Path WSMan:\localhost\Shell\MaxMemoryPerShellMB -Value 800
+Set-Item -Path WSMan:\localhost\Service\AllowUnencrypted -Value $true
+Set-Item -Path WSMan:\localhost\Service\Auth\Basic -Value $true
+Set-Item -Path WSMan:\localhost\Client\Auth\Basic -Value $true
+netsh advfirewall firewall set rule group="remote administration" new enable=yes
+netsh firewall add portopening TCP 5985 "Port 5985"
+net stop winrm
+sc.exe config winrm start= auto
+net start winrm
+</powershell>

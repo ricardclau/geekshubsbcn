@@ -1,0 +1,67 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "subnet_id": "subnet-cc1ae2a9",
+        "security_group_id": "sg-143b346d",
+        "region": "eu-west-1",
+        "source_ami_name": "*Windows_Server-2012-R2_RTM-English-64Bit-Base*",
+        "ami_name": "GeeksHubsBCN-Win2012-{{isotime \"2006-01-02-15.04.05\"}}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "{{user `region`}}",
+            "instance_type": "t2.micro",
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",
+                    "name": "{{user `source_ami_name`}}",
+                    "root-device-type": "ebs"
+                },
+                "owners": ["801119661308"],
+                "most_recent": true
+            },
+            "ami_name": "{{user `ami_name`}}",
+            "user_data_file": "{{template_dir}}/bootstrap/aws/userdata-windows2012.txt",
+            "communicator": "winrm",
+            "winrm_timeout": "4h",
+            "winrm_port": 5985,
+            "winrm_username": "Administrator",
+            "subnet_id": "{{user `subnet_id`}}",
+            "security_group_id": "{{user `security_group_id`}}",
+            "associate_public_ip_address": true,
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "tags": {
+                "version": "16.04",
+                "Name": "{{ user `ami_name`}}",
+                "Description": "GeeksHubsBCN Windows 2012r2 Demo"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "powershell",
+            "scripts": [
+                "{{template_dir}}/provisioners/powershell/disable-uac.ps1",
+                "{{template_dir}}/provisioners/powershell/install-chocolatey.ps1"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "choco install -y notepadplusplus --x86",
+                "choco install -y jre8",
+                "Add-WindowsFeature telnet-client -Verbose"
+            ]
+        },
+        {
+            "type": "powershell",
+            "scripts": [
+                "{{template_dir}}/provisioners/powershell/sysprep-ec2config.ps1",
+                "{{template_dir}}/provisioners/powershell/sysprep-bundleconfig.ps1"
+            ]
+        }
+    ]
+}
