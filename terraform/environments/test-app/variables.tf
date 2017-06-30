@@ -7,6 +7,7 @@ variable "region" {
 }
 
 variable "network_state" {
+  type = "map"
   default = {
     bucket = "holaluz-terraform"
     region = "eu-west-1"
