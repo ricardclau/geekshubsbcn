@@ -26,6 +26,7 @@
             "guest_additions_mode": "disable",
             "output_directory": "packer-win2012-{{timestamp}}",
             "disk_size": 40960,
+            "post_shutdown_delay": "30s",
             "floppy_files": [
                 "{{user `autounattend`}}",
                 "{{template_dir}}/provisioners/powershell/win-updates.ps1",

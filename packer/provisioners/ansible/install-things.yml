@@ -2,7 +2,6 @@
 - name: Install some packages
   hosts: all
   become: true
-  remote_user: vagrant
 
   tasks:
     - name: install stuff
@@ -15,4 +14,3 @@
         - curl
         - zip
         - unzip
-        

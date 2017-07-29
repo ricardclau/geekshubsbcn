@@ -40,6 +40,7 @@
         {
             "type": "ansible",
             "playbook_file": "{{template_dir}}/provisioners/ansible/install-things.yml",
+            "user": "ubuntu",
             "extra_arguments": [
                 "--extra-vars",
                 "ansible_python_interpreter=/usr/bin/python3"
